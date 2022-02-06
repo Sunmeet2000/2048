@@ -43,7 +43,7 @@ document.addEventListener('DOMContentLoaded',() =>{
         {
             sqs[i1][j1].innerHTML = 2
             sqs[i2][j2].innerHTML = 4
-            //checkForGameOver()
+            checkForGameOver()
         }
         else
           generate24()
@@ -61,6 +61,7 @@ document.addEventListener('DOMContentLoaded',() =>{
         {
             let num2 = Math.floor(Math.random() * 2)
             sqs[i][j].innerHTML = arr[num2]
+            checkForGameOver()
         }
         else
           generate()
