@@ -91,9 +91,55 @@ document.addEventListener('DOMContentLoaded',() =>{
         }      
     }
 
+
+    //Moving Left
+    function leftmove()
+    {
+        for(let i=0;i<4;i++)
+        {
+                let a = sqs[i][0].innerHTML
+                let b = sqs[i][1].innerHTML
+                let c = sqs[i][2].innerHTML
+                let d = sqs[i][3].innerHTML
+
+                let row = [parseInt(a),parseInt(b),parseInt(c),parseInt(d)]
+             
+                let filterRow = row.filter(num => num)
+                let miss = 4 - filterRow.length
+                let zeros = Array(miss).fill(0)
+                let newRow = filterRow.concat(zeros)
+
+                sqs[i][0].innerHTML = newRow[0]
+                sqs[i][1].innerHTML = newRow[1]
+                sqs[i][2].innerHTML = newRow[2]
+                sqs[i][3].innerHTML = newRow[3]
+        }      
+    }
+
     
-    //Combining Row 
-    function combinerow()
+    //Combining Row After Right Move
+    function combinerowright()
+    {
+        for(let i=0;i<4;i++)
+        {
+            for(let j=3;j>0;j--)
+            {
+                if(sqs[i][j].innerHTML === sqs[i][j-1].innerHTML)
+                {
+                    let combinedTotal = parseInt(sqs[i][j].innerHTML) + parseInt(sqs[i][j-1].innerHTML)
+                    sqs[i][j].innerHTML = combinedTotal
+                    sqs[i][j-1].innerHTML = 0
+                    score += combinedTotal
+                    scoreDisplay.innerHTML = score
+                }
+            }
+        }
+       // checkForWin()
+    }
+
+
+    //Combining Row After Leftt Move
+    function combinerowleft()
     {
         for(let i=0;i<4;i++)
         {
@@ -113,12 +159,15 @@ document.addEventListener('DOMContentLoaded',() =>{
     }
 
 
-
     function control(e)
     {
         if(e.keyCode === 39)
         {
             keyRight()
+        }
+        else if(e.keyCode === 37)
+        {
+            keyLeft()
         }
 
     }
@@ -132,9 +181,17 @@ document.addEventListener('DOMContentLoaded',() =>{
     function keyRight()
     {
         rightmove()
-        combinerow()
+        combinerowright()
         rightmove()
         generate()      
     }
+    
 
+    function keyLeft()
+    {
+        leftmove()
+        combinerowleft()
+        leftmove()
+        generate()      
+    }
 })
