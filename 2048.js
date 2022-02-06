@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded',() =>{
     const boardDisplay = document.querySelector('.board')
     const scoreDisplay =  document.getElementById('score')
-
+    const resultDisplay = document.getElementById('result')
     let sqs = []
     let score = 0
     let arr = [2,4]
@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded',() =>{
         {
             sqs[i] = []
         }
-        for(let i=0;i < 4;i++)
+        for(let i=0;i<4;i++)
         {
             for(let j=0;j<4;j++)
             {
@@ -174,7 +174,7 @@ document.addEventListener('DOMContentLoaded',() =>{
         {
             for(let j=3;j>0;j--)
             {
-                if(sqs[i][j].innerHTML === sqs[i][j-1].innerHTML)
+                if(sqs[i][j].innerHTML == sqs[i][j-1].innerHTML)
                 {
                     let combinedTotal = parseInt(sqs[i][j].innerHTML) + parseInt(sqs[i][j-1].innerHTML)
                     sqs[i][j].innerHTML = combinedTotal
@@ -184,7 +184,7 @@ document.addEventListener('DOMContentLoaded',() =>{
                 }
             }
         }
-       // checkForWin()
+       checkForWin()
     }
 
 
@@ -195,7 +195,7 @@ document.addEventListener('DOMContentLoaded',() =>{
         {
             for(let j=0;j<3;j++)
             {
-                if(sqs[i][j].innerHTML === sqs[i][j+1].innerHTML)
+                if(sqs[i][j].innerHTML == sqs[i][j+1].innerHTML)
                 {
                     let combinedTotal = parseInt(sqs[i][j].innerHTML) + parseInt(sqs[i][j+1].innerHTML)
                     sqs[i][j].innerHTML = combinedTotal
@@ -205,7 +205,7 @@ document.addEventListener('DOMContentLoaded',() =>{
                 }
             }
         }
-       // checkForWin()
+       checkForWin()
     }
 
     //Combining Column After Up Move
@@ -215,7 +215,7 @@ document.addEventListener('DOMContentLoaded',() =>{
         {
             for(let i=0;i<3;i++)
             {
-                if(sqs[i][j].innerHTML === sqs[i+1][j].innerHTML)
+                if(sqs[i][j].innerHTML == sqs[i+1][j].innerHTML)
                 {
                     let combinedTotal = parseInt(sqs[i][j].innerHTML) + parseInt(sqs[i+1][j].innerHTML)
                     sqs[i][j].innerHTML = combinedTotal
@@ -225,7 +225,7 @@ document.addEventListener('DOMContentLoaded',() =>{
                 }
             }
         }
-        // checkForWin()
+        checkForWin()
     }
 
 
@@ -236,7 +236,7 @@ document.addEventListener('DOMContentLoaded',() =>{
         {
             for(let i=3;i>0;i--)
             {
-                if(sqs[i][j].innerHTML === sqs[i-1][j].innerHTML)
+                if(sqs[i][j].innerHTML == sqs[i-1][j].innerHTML)
                 {
                     let combinedTotal = parseInt(sqs[i][j].innerHTML) + parseInt(sqs[i-1][j].innerHTML)
                     sqs[i][j].innerHTML = combinedTotal
@@ -244,7 +244,7 @@ document.addEventListener('DOMContentLoaded',() =>{
                 }
             }
         }
-        // checkForWin()
+        checkForWin()
     }
 
 
@@ -258,7 +258,7 @@ document.addEventListener('DOMContentLoaded',() =>{
         {
             keyLeft()
         }
-        else if(e.keycode === 38)
+        else if(e.keyCode === 38)
         {
             keyUpwards()
         }
@@ -307,5 +307,44 @@ document.addEventListener('DOMContentLoaded',() =>{
         combinedown()
         downmove()
         generate()
+    }
+
+
+
+    function checkForWin()
+    {
+        for(let i=0;i<4;i++)
+        {
+            for(let j=0;j<4;j++)
+            {
+                if(sqs[i][j].innerHTML == 2048)
+                {
+                    resultDisplay.innerHTML = 'You Win!'
+                    document.removeEventListener('keyup',control)
+                }
+            }
+
+        }
+    }
+
+
+    function checkForGameOver()
+    {
+        let zeroes = 0
+        for(let i=0;i<4;i++)
+        {
+            for(let j=0;j<4;j++)
+            {
+                if(sqs[i][j].innerHTML == 0)
+                {
+                    zeroes++
+                }
+            }
+        }
+        if(zeroes == 0)
+        {
+            resultDisplay.innerHTML = 'YouLose!'
+            document.removeEventListener('keyup',control)
+        }
     }
 })
