@@ -50,7 +50,7 @@ document.addEventListener('DOMContentLoaded',() =>{
     }
 
 
-    //Inserting 2 or 4 at random position.
+    //Inserting 2 or 4 at a random position.
     function generate()
     {
         let num1 = Math.floor(Math.random() * 16)
@@ -92,7 +92,7 @@ document.addEventListener('DOMContentLoaded',() =>{
     }
 
     
-
+    //Combining Row 
     function combinerow()
     {
         for(let i=0;i<4;i++)
@@ -122,6 +122,13 @@ document.addEventListener('DOMContentLoaded',() =>{
         }
 
     }
+
+
+    //Adding EventListner for checking if user has given any input or not. 
+    document.addEventListener('keyup',control)
+
+
+
     function keyRight()
     {
         rightmove()
