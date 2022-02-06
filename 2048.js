@@ -142,6 +142,31 @@ document.addEventListener('DOMContentLoaded',() =>{
     }
 
 
+    //Moving Down
+    function downmove()
+    {
+        for(let j=0;j<4;j++)
+        {
+            let a = sqs[0][j].innerHTML
+            let b = sqs[1][j].innerHTML
+            let c = sqs[2][j].innerHTML
+            let d = sqs[3][j].innerHTML
+
+            let column = [parseInt(a),parseInt(b),parseInt(c),parseInt(d)]
+        
+            let filterColumn = column.filter(num => num)
+            let miss = 4 - filterColumn.length
+            let zeros = Array(miss).fill(0)
+            let newColumn = zeros.concat(filterColumn)
+
+            sqs[0][j].innerHTML = newColumn[0]
+            sqs[1][j].innerHTML = newColumn[1]
+            sqs[2][j].innerHTML = newColumn[2]
+            sqs[3][j].innerHTML = newColumn[3]      
+        }   
+    }
+
+
     //Combining Row After Right Move
     function combinerowright()
     {
@@ -204,6 +229,23 @@ document.addEventListener('DOMContentLoaded',() =>{
     }
 
 
+    //Combining Column After Down Move
+    function combinedown()
+    {
+        for(let j=0;j<4;j++)
+        {
+            for(let i=3;i>0;i--)
+            {
+                if(sqs[i][j].innerHTML === sqs[i-1][j].innerHTML)
+                {
+                    let combinedTotal = parseInt(sqs[i][j].innerHTML) + parseInt(sqs[i-1][j].innerHTML)
+                    sqs[i][j].innerHTML = combinedTotal
+                    sqs[i-1][j] = 0
+                }
+            }
+        }
+        // checkForWin()
+    }
 
 
     function control(e)
@@ -219,6 +261,10 @@ document.addEventListener('DOMContentLoaded',() =>{
         else if(e.keycode === 38)
         {
             keyUpwards()
+        }
+        else if(e.keyCode === 40)
+        {
+            keyDownwards()
         }
     }
 
@@ -252,5 +298,14 @@ document.addEventListener('DOMContentLoaded',() =>{
         combineup()
         upmove()
         generate()      
+    }
+
+
+    function keyDownwards()
+    {
+        downmove()
+        combinedown()
+        downmove()
+        generate()
     }
 })
