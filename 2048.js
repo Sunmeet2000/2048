@@ -146,8 +146,8 @@ document.addEventListener('DOMContentLoaded',() =>{
     //Moving Down
     function downmove()
     {
-        for(let j=0;j<4;j++)
-        {
+       for(let j=0;j<4;j++)
+       {
             let a = sqs[0][j].innerHTML
             let b = sqs[1][j].innerHTML
             let c = sqs[2][j].innerHTML
@@ -163,8 +163,8 @@ document.addEventListener('DOMContentLoaded',() =>{
             sqs[0][j].innerHTML = newColumn[0]
             sqs[1][j].innerHTML = newColumn[1]
             sqs[2][j].innerHTML = newColumn[2]
-            sqs[3][j].innerHTML = newColumn[3]      
-        }   
+            sqs[3][j].innerHTML = newColumn[3]       
+       }   
     }
 
 
@@ -237,11 +237,13 @@ document.addEventListener('DOMContentLoaded',() =>{
         {
             for(let i=3;i>0;i--)
             {
-                if(sqs[i][j].innerHTML == sqs[i-1][j].innerHTML)
+                if(sqs[i][j].innerHTML === sqs[i-1][j].innerHTML)
                 {
                     let combinedTotal = parseInt(sqs[i][j].innerHTML) + parseInt(sqs[i-1][j].innerHTML)
                     sqs[i][j].innerHTML = combinedTotal
-                    sqs[i-1][j] = 0
+                    sqs[i-1][j].innerHTML = 0
+                    score += combinedTotal
+                    scoreDisplay.innerHTML = score
                 }
             }
         }
@@ -307,11 +309,11 @@ document.addEventListener('DOMContentLoaded',() =>{
         downmove()
         combinedown()
         downmove()
-        generate()
+        generate()      
     }
 
 
-
+    //Checking if user has reached the target and has win the game.
     function checkForWin()
     {
         for(let i=0;i<4;i++)
@@ -328,7 +330,7 @@ document.addEventListener('DOMContentLoaded',() =>{
         }
     }
 
-
+    //Checking if grid is full & user has lost the game.
     function checkForGameOver()
     {
         let zeroes = 0
