@@ -168,7 +168,7 @@ document.addEventListener('DOMContentLoaded',() =>{
     }
 
 
-    //Combining Row After Right Move
+    //Combining Row After Right Move.
     function combinerowright()
     {
         for(let i=0;i<4;i++)
@@ -189,7 +189,7 @@ document.addEventListener('DOMContentLoaded',() =>{
     }
 
 
-    //Combining Row After Left Move
+    //Combining Row After Left Move.
     function combinerowleft()
     {
         for(let i=0;i<4;i++)
@@ -209,7 +209,7 @@ document.addEventListener('DOMContentLoaded',() =>{
         checkForWin()
     }
 
-    //Combining Column After Up Move
+    //Combining Column After Up Move.
     function combineup()
     {
         for(let j=0;j<4;j++)
@@ -230,7 +230,7 @@ document.addEventListener('DOMContentLoaded',() =>{
     }
 
 
-    //Combining Column After Down Move
+    //Combining Column After Down Move.
     function combinedown()
     {
         for(let j=0;j<4;j++)
@@ -251,7 +251,7 @@ document.addEventListener('DOMContentLoaded',() =>{
     }
 
 
-    //Function for returning maximum score in board
+    //Function for returning maximum score in board.
     function maxScore()
     {
         let s = 0
@@ -287,11 +287,12 @@ document.addEventListener('DOMContentLoaded',() =>{
     }
 
 
-    //Adding EventListner for checking if user has given any input or not. 
+    //Adding EventListner for checking if user has given any input for moving left,right,up,down 
+    // in board or not. 
     document.addEventListener('keyup',control)
 
 
-
+    //Function for moving right in board & adding tiles if poosible.
     function keyRight()
     {
         rightmove()
@@ -300,7 +301,8 @@ document.addEventListener('DOMContentLoaded',() =>{
         generate()      
     }
     
-
+    
+    //Function for moving left in board & adding tiles if possible.
     function keyLeft()
     {
         leftmove()
@@ -310,6 +312,7 @@ document.addEventListener('DOMContentLoaded',() =>{
     }
 
 
+    //Function for moving up in board & adding tiles if possible.
     function keyUpwards()
     {
         upmove()
@@ -318,7 +321,8 @@ document.addEventListener('DOMContentLoaded',() =>{
         generate()      
     }
 
-
+    
+    //Function for moving down in board & adding tiles if possible.
     function keyDownwards()
     {
         downmove()
