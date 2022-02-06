@@ -117,6 +117,31 @@ document.addEventListener('DOMContentLoaded',() =>{
     }
 
     
+    //Moving Up
+    function upmove()
+    {
+       for(let j=0;j<4;j++)
+       {
+            let a = sqs[0][j].innerHTML
+            let b = sqs[1][j].innerHTML
+            let c = sqs[2][j].innerHTML
+            let d = sqs[3][j].innerHTML
+
+            let column = [parseInt(a),parseInt(b),parseInt(c),parseInt(d)]
+        
+            let filterColumn = column.filter(num => num)
+            let miss = 4 - filterColumn.length
+            let zeros = Array(miss).fill(0)
+            let newColumn = filterColumn.concat(zeros)
+
+            sqs[0][j].innerHTML = newColumn[0]
+            sqs[1][j].innerHTML = newColumn[1]
+            sqs[2][j].innerHTML = newColumn[2]
+            sqs[3][j].innerHTML = newColumn[3]       
+       }   
+    }
+
+
     //Combining Row After Right Move
     function combinerowright()
     {
@@ -138,7 +163,7 @@ document.addEventListener('DOMContentLoaded',() =>{
     }
 
 
-    //Combining Row After Leftt Move
+    //Combining Row After Left Move
     function combinerowleft()
     {
         for(let i=0;i<4;i++)
@@ -158,6 +183,28 @@ document.addEventListener('DOMContentLoaded',() =>{
        // checkForWin()
     }
 
+    //Combining Column After Up Move
+    function combineup()
+    {
+        for(let j=0;j<4;j++)
+        {
+            for(let i=0;i<3;i++)
+            {
+                if(sqs[i][j].innerHTML === sqs[i+1][j].innerHTML)
+                {
+                    let combinedTotal = parseInt(sqs[i][j].innerHTML) + parseInt(sqs[i+1][j].innerHTML)
+                    sqs[i][j].innerHTML = combinedTotal
+                    sqs[i+1][j].innerHTML = 0
+                    score += combinedTotal
+                    scoreDisplay.innerHTML = score
+                }
+            }
+        }
+        // checkForWin()
+    }
+
+
+
 
     function control(e)
     {
@@ -169,7 +216,10 @@ document.addEventListener('DOMContentLoaded',() =>{
         {
             keyLeft()
         }
-
+        else if(e.keycode === 38)
+        {
+            keyUpwards()
+        }
     }
 
 
@@ -192,6 +242,15 @@ document.addEventListener('DOMContentLoaded',() =>{
         leftmove()
         combinerowleft()
         leftmove()
+        generate()      
+    }
+
+
+    function keyUpwards()
+    {
+        upmove()
+        combineup()
+        upmove()
         generate()      
     }
 })
