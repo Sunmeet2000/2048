@@ -2,8 +2,8 @@ document.addEventListener('DOMContentLoaded',() =>{
     const boardDisplay = document.querySelector('.board')
     const scoreDisplay =  document.getElementById('score')
     const resultDisplay = document.getElementById('result')
+
     let sqs = []
-    let score = 0
     let arr = [2,4]
     
 
@@ -180,12 +180,12 @@ document.addEventListener('DOMContentLoaded',() =>{
                     let combinedTotal = parseInt(sqs[i][j].innerHTML) + parseInt(sqs[i][j-1].innerHTML)
                     sqs[i][j].innerHTML = combinedTotal
                     sqs[i][j-1].innerHTML = 0
-                    score += combinedTotal
-                    scoreDisplay.innerHTML = score
                 }
             }
         }
-       checkForWin()
+        let score = maxScore()
+        scoreDisplay.innerHTML = (score)
+        checkForWin()
     }
 
 
@@ -201,12 +201,12 @@ document.addEventListener('DOMContentLoaded',() =>{
                     let combinedTotal = parseInt(sqs[i][j].innerHTML) + parseInt(sqs[i][j+1].innerHTML)
                     sqs[i][j].innerHTML = combinedTotal
                     sqs[i][j+1].innerHTML = 0
-                    score += combinedTotal
-                    scoreDisplay.innerHTML = score
                 }
             }
         }
-       checkForWin()
+        let score = maxScore()
+        scoreDisplay.innerHTML = (score)
+        checkForWin()
     }
 
     //Combining Column After Up Move
@@ -221,11 +221,11 @@ document.addEventListener('DOMContentLoaded',() =>{
                     let combinedTotal = parseInt(sqs[i][j].innerHTML) + parseInt(sqs[i+1][j].innerHTML)
                     sqs[i][j].innerHTML = combinedTotal
                     sqs[i+1][j].innerHTML = 0
-                    score += combinedTotal
-                    scoreDisplay.innerHTML = score
                 }
             }
         }
+        let score = maxScore()
+        scoreDisplay.innerHTML = (score)
         checkForWin()
     }
 
@@ -242,12 +242,27 @@ document.addEventListener('DOMContentLoaded',() =>{
                     let combinedTotal = parseInt(sqs[i][j].innerHTML) + parseInt(sqs[i-1][j].innerHTML)
                     sqs[i][j].innerHTML = combinedTotal
                     sqs[i-1][j].innerHTML = 0
-                    score += combinedTotal
-                    scoreDisplay.innerHTML = score
                 }
             }
         }
+        let score = maxScore()
+        scoreDisplay.innerHTML = (score)
         checkForWin()
+    }
+
+
+    //Function for returning maximum score in board
+    function maxScore()
+    {
+        let s = 0
+       for(let i=0;i<4;i++)
+       {
+           for(let j=0;j<4;j++)
+           {
+               s = Math.max(s,parseInt(sqs[i][j].innerHTML))
+           }
+       }
+       return(s)
     }
 
 
