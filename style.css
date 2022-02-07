@@ -9,7 +9,7 @@
 .board div{
     width:96px;
     height:96px;
-    background-color:red; 
+    background-color:blue; 
     font-size: 60px;
     text-align: center;
     font-weight: bold;
@@ -28,10 +28,16 @@
     font-weight: bold;
     margin-left: 0px;
 }
-#result
+#resultwin
 {
     font-size:60px;
     color:green;
+    font-weight:bold;
+}
+#resultlose
+{
+    font-size:60px;
+    color:red;
     font-weight:bold;
 }
 #refresh
