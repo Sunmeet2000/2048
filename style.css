@@ -1,3 +1,6 @@
+body{
+    background-color:black;
+}
 .board
 {
     display:flex;
@@ -18,20 +21,20 @@
 }
 .scoretitle{
     font-size:40px;
-    color:blue;
+    color:white;
     font-weight: bold;
     float:left;
 }
 #score{
     font-size:40px;
-    color:blue;
+    color:white;
     font-weight: bold;
     margin-left: 0px;
 }
 #resultwin
 {
     font-size:60px;
-    color:green;
+    color:lightgreen;
     font-weight:bold;
 }
 #resultlose
