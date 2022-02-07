@@ -384,7 +384,7 @@ function highScore()
         {
             for(let j=0;j<4;j++)
             {
-                if(sqs[i][j].innerHTML == 128)
+                if(sqs[i][j].innerHTML == 2048)
                 {
                     resultDisplay.innerHTML = 'You Win!'
                     document.removeEventListener('keyup',control)
