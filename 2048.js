@@ -5,7 +5,7 @@ function fun()
 }
 
 
-//Adding event listner.
+//Adding an event listner.
 document.addEventListener('DOMContentLoaded',() =>{
     const boardDisplay = document.querySelector('.board')
     const scoreDisplay =  document.getElementById('score')
@@ -14,12 +14,12 @@ document.addEventListener('DOMContentLoaded',() =>{
     const result2Display = document.getElementById('resultlose')
 
 
-    let sqs = []
-    let arr = [2,4]
-    let score = 0
+    let sqs = [4]         // 1D array for storing numbers.
+    let arr = [2,4]      // An array for randomly picking either 2 or 4.
+    let score = 0        // Variable to calculate score of user in the game.
 
 
-//Session storage function for storing high score of user in one session.
+// Session storage function for storing high score of user in one session in browser cache.
 function highScore()
 {
     console.log(score)
@@ -27,7 +27,7 @@ function highScore()
     {
         if(sessionStorage.hscore < score)
         {
-            sessionStorage.hscore = score
+            sessionStorage.hscore = score               // Updating session variable value
             highscoreDisplay.innerHTML = score
             
         }
@@ -38,16 +38,16 @@ function highScore()
     }
     else
     {
-        sessionStorage.hscore = 0;
+        sessionStorage.hscore = 0;                    // Creating session variable.
     }
 }
     
     
 
-    //Creating Board
+    // Creating Board
     function board()
     {
-        for(let i=0;i<4;i++)
+        for(let i=0;i<4;i++)                         // Converting sqs array from 1D to 2D.
         {
             sqs[i] = []
         }
@@ -55,16 +55,19 @@ function highScore()
         {
             for(let j=0;j<4;j++)
             {
-                sq = document.createElement('div')
-                sq.innerHTML = ""
-                boardDisplay.appendChild(sq)
-                sqs[i].push(sq)
+                sq = document.createElement('div')            // Creating empty HTML div's.
+                sq.innerHTML = ""                             
+                boardDisplay.appendChild(sq)                  // Appending empty div's created to board.
+                sqs[i].push(sq)                               // Initialising sqs array.
             }
         }
-        generate24()
+        generate24()                             // Calling function generate24() to initially generate 2 & 4
+                                                 //at random positions on the board.
     }
-    board()
-    highScore()
+    board()                                     // Calling function board() to display grid initially. 
+    highScore()                                 // Calling function highScore() to initially display the high score.
+
+
 
     //Inserting 2 & 4 at random positions initially.
     function generate24()
@@ -80,14 +83,14 @@ function highScore()
         {
             sqs[i1][j1].innerHTML = 2
             sqs[i2][j2].innerHTML = 4
-            checkForGameOver()
         }
         else
-          generate24()
+          generate24()                                       
     }
 
 
-    //Inserting 2 or 4 at a random position.
+
+    //Inserting 2 or 4 at a random position after user gives input to move.
     function generate()
     {
         let num1 = Math.floor(Math.random() * 16)
@@ -98,11 +101,13 @@ function highScore()
         {
             let num2 = Math.floor(Math.random() * 2)
             sqs[i][j].innerHTML = arr[num2]
-            checkForGameOver()
+            checkForGameOver()                       //Calling function checkForGameOver() for checking if no tile
+                                                     //left for inserting new tile in the board.
         }
         else
           generate()
     }
+
 
 
     //Moving Right
@@ -110,17 +115,17 @@ function highScore()
     {
         for(let i=0;i<4;i++)
         {
-                let a = (sqs[i][0].innerHTML == "") ? 0 : (sqs[i][0].innerHTML)
+                let a = (sqs[i][0].innerHTML == "") ? 0 : (sqs[i][0].innerHTML)   //Extracting elements of row.
                 let b = (sqs[i][1].innerHTML == "") ? 0 : (sqs[i][1].innerHTML)
                 let c = (sqs[i][2].innerHTML == "") ? 0 : (sqs[i][2].innerHTML)
                 let d = (sqs[i][3].innerHTML == "") ? 0 : (sqs[i][3].innerHTML)
 
-                let row = [parseInt(a),parseInt(b),parseInt(c),parseInt(d)]
+                let row = [parseInt(a),parseInt(b),parseInt(c),parseInt(d)]      //Converting strings to integer type.
              
-                let filterRow = row.filter(num => num)
-                let miss = 4 - filterRow.length
-                let zeros = Array(miss).fill(0)
-                let newRow = zeros.concat(filterRow)
+                let filterRow = row.filter(num => num)              //Removing all zero's from row array.
+                let miss = 4 - filterRow.length                    //Finding how many zero's are there in row.
+                let zeros = Array(miss).fill(0)                    //Creating an array with zero's.
+                let newRow = zeros.concat(filterRow)               //Concatinating zero array with elements present in row.
 
                 sqs[i][0].innerHTML = (newRow[0] == 0) ? "" : (newRow[0])
                 sqs[i][1].innerHTML = (newRow[1] == 0) ? "" : (newRow[1])
@@ -128,6 +133,7 @@ function highScore()
                 sqs[i][3].innerHTML = (newRow[3] == 0) ? "" : (newRow[3])
         }      
     }
+
 
 
     //Moving Left
@@ -153,6 +159,7 @@ function highScore()
                 sqs[i][3].innerHTML = (newRow[3] == 0) ? "" : (newRow[3])
         }      
     }
+
 
     
     //Moving Up
@@ -180,6 +187,7 @@ function highScore()
     }
 
 
+
     //Moving Down
     function downmove()
     {
@@ -205,6 +213,7 @@ function highScore()
     }
 
 
+
     //Combining(adding) Row After Right Move.
     function combinerowright()
     {
@@ -225,6 +234,7 @@ function highScore()
         }
         checkForWin()
     }
+
 
 
     //Combining(adding) Row After Left Move.
@@ -248,6 +258,8 @@ function highScore()
         checkForWin()
     }
 
+
+
     //Combining(adding) Column After Up Move.
     function combineup()
     {
@@ -268,6 +280,7 @@ function highScore()
         }
         checkForWin()
     }
+
 
 
     //Combining(adding) Column After Down Move.
@@ -292,22 +305,6 @@ function highScore()
     }
 
 
-    //Function for returning maximum score in board.
-    function maxScore()
-    {
-        let s = 0
-       for(let i=0;i<4;i++)
-       {
-           for(let j=0;j<4;j++)
-           {
-               if(sqs[i][j].innerHTML != "")
-               {
-                   s = Math.max(s,parseInt(sqs[i][j].innerHTML))
-               }
-           }
-       }
-       return(s)
-    }
 
     /* Function for calling various up,down,left,right move functions after user gives input to 
        move.*/
@@ -332,9 +329,11 @@ function highScore()
     }
 
 
+
     /* Adding EventListner for checking if user has given any input for moving left,right,up,down 
      in board or not. */
     document.addEventListener('keyup',control)
+
 
 
     //Function for moving right in board & adding tiles if poosible.
@@ -346,6 +345,7 @@ function highScore()
         generate()      
     }
     
+
     
     //Function for moving left in board & adding tiles if possible.
     function keyLeft()
@@ -355,6 +355,7 @@ function highScore()
         leftmove()
         generate()      
     }
+
 
 
     //Function for moving up in board & adding tiles if possible.
@@ -393,6 +394,7 @@ function highScore()
 
         }
     }
+
 
     //Checking if grid is full & user has lost the game.
     function checkForGameOver()
