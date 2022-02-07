@@ -131,10 +131,10 @@ document.addEventListener('DOMContentLoaded',() =>{
     {
        for(let j=0;j<4;j++)
        {
-            let a = sqs[0][j].innerHTML
-            let b = sqs[1][j].innerHTML
-            let c = sqs[2][j].innerHTML
-            let d = sqs[3][j].innerHTML
+            let a = (sqs[0][j].innerHTML == "") ? 0 : (sqs[0][j].innerHTML)
+            let b = (sqs[1][j].innerHTML == "") ? 0 : (sqs[1][j].innerHTML)
+            let c = (sqs[2][j].innerHTML == "") ? 0 : (sqs[2][j].innerHTML)
+            let d = (sqs[3][j].innerHTML == "") ? 0 : (sqs[3][j].innerHTML)
 
             let column = [parseInt(a),parseInt(b),parseInt(c),parseInt(d)]
         
@@ -143,10 +143,10 @@ document.addEventListener('DOMContentLoaded',() =>{
             let zeros = Array(miss).fill(0)
             let newColumn = filterColumn.concat(zeros)
 
-            sqs[0][j].innerHTML = newColumn[0]
-            sqs[1][j].innerHTML = newColumn[1]
-            sqs[2][j].innerHTML = newColumn[2]
-            sqs[3][j].innerHTML = newColumn[3]       
+            sqs[0][j].innerHTML = (newColumn[0] == 0) ? "" : (newColumn[0])
+            sqs[1][j].innerHTML = (newColumn[1] == 0) ? "" : (newColumn[1])
+            sqs[2][j].innerHTML = (newColumn[2] == 0) ? "" : (newColumn[2])
+            sqs[3][j].innerHTML = (newColumn[3] == 0) ? "" : (newColumn[3])    
        }   
     }
 
@@ -156,10 +156,10 @@ document.addEventListener('DOMContentLoaded',() =>{
     {
        for(let j=0;j<4;j++)
        {
-            let a = sqs[0][j].innerHTML
-            let b = sqs[1][j].innerHTML
-            let c = sqs[2][j].innerHTML
-            let d = sqs[3][j].innerHTML
+            let a = (sqs[0][j].innerHTML == "") ? 0 : (sqs[0][j].innerHTML)
+            let b = (sqs[1][j].innerHTML == "") ? 0 : (sqs[1][j].innerHTML)
+            let c = (sqs[2][j].innerHTML == "") ? 0 : (sqs[2][j].innerHTML)
+            let d = (sqs[3][j].innerHTML == "") ? 0 : (sqs[3][j].innerHTML)
 
             let column = [parseInt(a),parseInt(b),parseInt(c),parseInt(d)]
         
@@ -168,10 +168,10 @@ document.addEventListener('DOMContentLoaded',() =>{
             let zeros = Array(miss).fill(0)
             let newColumn = zeros.concat(filterColumn)
 
-            sqs[0][j].innerHTML = newColumn[0]
-            sqs[1][j].innerHTML = newColumn[1]
-            sqs[2][j].innerHTML = newColumn[2]
-            sqs[3][j].innerHTML = newColumn[3]       
+            sqs[0][j].innerHTML = (newColumn[0] == 0) ? "" : (newColumn[0])
+            sqs[1][j].innerHTML = (newColumn[1] == 0) ? "" : (newColumn[1])
+            sqs[2][j].innerHTML = (newColumn[2] == 0) ? "" : (newColumn[2])
+            sqs[3][j].innerHTML = (newColumn[3] == 0) ? "" : (newColumn[3])    
        }   
     }
 
@@ -224,11 +224,11 @@ document.addEventListener('DOMContentLoaded',() =>{
         {
             for(let i=0;i<3;i++)
             {
-                if(sqs[i][j].innerHTML == sqs[i+1][j].innerHTML)
+                if(sqs[i][j].innerHTML == sqs[i+1][j].innerHTML && sqs[i][j].innerHTML != "" && sqs[i+1][j].innerHTML != "")
                 {
                     let combinedTotal = parseInt(sqs[i][j].innerHTML) + parseInt(sqs[i+1][j].innerHTML)
                     sqs[i][j].innerHTML = combinedTotal
-                    sqs[i+1][j].innerHTML = 0
+                    sqs[i+1][j].innerHTML = ""
                 }
             }
         }
@@ -245,11 +245,11 @@ document.addEventListener('DOMContentLoaded',() =>{
         {
             for(let i=3;i>0;i--)
             {
-                if(sqs[i][j].innerHTML === sqs[i-1][j].innerHTML)
+                if(sqs[i][j].innerHTML == sqs[i-1][j].innerHTML && sqs[i][j].innerHTML != "" && sqs[i-1][j].innerHTML != "")
                 {
                     let combinedTotal = parseInt(sqs[i][j].innerHTML) + parseInt(sqs[i-1][j].innerHTML)
                     sqs[i][j].innerHTML = combinedTotal
-                    sqs[i-1][j].innerHTML = 0
+                    sqs[i-1][j].innerHTML = ""
                 }
             }
         }
@@ -350,7 +350,7 @@ document.addEventListener('DOMContentLoaded',() =>{
         {
             for(let j=0;j<4;j++)
             {
-                if(sqs[i][j].innerHTML == 16)
+                if(sqs[i][j].innerHTML == 128)
                 {
                     resultDisplay.innerHTML = 'You Win!'
                     document.removeEventListener('keyup',control)
