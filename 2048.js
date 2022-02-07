@@ -310,19 +310,19 @@ function highScore()
        move.*/
     function control(c)
     {
-        if(c.keyCode === 39)
+        if(c.keyCode === 98 || c.keyCode === 50)
         {
             keyRight()
         }
-        else if(c.keyCode === 37)
+        else if(c.keyCode === 97 || c.keyCode === 49)
         {
             keyLeft()
         }
-        else if(c.keyCode === 38)
+        else if(c.keyCode === 99  || c.keyCode === 51)
         {
             keyUpwards()
         }
-        else if(c.keyCode === 40)
+        else if(c.keyCode === 100 || c.keyCode === 52)
         {
             keyDownwards()
         }
