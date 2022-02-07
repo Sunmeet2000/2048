@@ -9,12 +9,39 @@ function fun()
 document.addEventListener('DOMContentLoaded',() =>{
     const boardDisplay = document.querySelector('.board')
     const scoreDisplay =  document.getElementById('score')
+    const highscoreDisplay = document.getElementById('highscore')
     const resultDisplay = document.getElementById('resultwin')
     const result2Display = document.getElementById('resultlose')
+
 
     let sqs = []
     let arr = [2,4]
     let score = 0
+
+
+//Session storage function for storing high score of user in one session.
+function highScore()
+{
+    console.log(score)
+    if(sessionStorage.hscore)
+    {
+        if(sessionStorage.hscore < score)
+        {
+            sessionStorage.hscore = score
+            highscoreDisplay.innerHTML = score
+            
+        }
+        else
+        { 
+            highscoreDisplay.innerHTML = sessionStorage.hscore
+        }
+    }
+    else
+    {
+        sessionStorage.hscore = 0;
+    }
+}
+    
     
 
     //Creating Board
@@ -37,7 +64,7 @@ document.addEventListener('DOMContentLoaded',() =>{
         generate24()
     }
     board()
-
+    highScore()
 
     //Inserting 2 & 4 at random positions initially.
     function generate24()
@@ -192,6 +219,7 @@ document.addEventListener('DOMContentLoaded',() =>{
                     sqs[i][j-1].innerHTML = ""
                     score += combinedTotal
                     scoreDisplay.innerHTML = score
+                    highScore()
                 }
             }
         }
@@ -213,6 +241,7 @@ document.addEventListener('DOMContentLoaded',() =>{
                     sqs[i][j+1].innerHTML = ""
                     score += combinedTotal
                     scoreDisplay.innerHTML = score
+                    highScore()
                 }
             }
         }
@@ -233,6 +262,7 @@ document.addEventListener('DOMContentLoaded',() =>{
                     sqs[i+1][j].innerHTML = ""
                     score += combinedTotal
                     scoreDisplay.innerHTML = score
+                    highScore()
                 }
             }
         }
@@ -254,6 +284,7 @@ document.addEventListener('DOMContentLoaded',() =>{
                     sqs[i-1][j].innerHTML = ""
                     score += combinedTotal
                     scoreDisplay.innerHTML = score
+                    highScore()
                 }
             }
         }
@@ -353,7 +384,7 @@ document.addEventListener('DOMContentLoaded',() =>{
         {
             for(let j=0;j<4;j++)
             {
-                if(sqs[i][j].innerHTML == 16)
+                if(sqs[i][j].innerHTML == 128)
                 {
                     resultDisplay.innerHTML = 'You Win!'
                     document.removeEventListener('keyup',control)
