@@ -14,6 +14,7 @@ document.addEventListener('DOMContentLoaded',() =>{
 
     let sqs = []
     let arr = [2,4]
+    let score = 0
     
 
     //Creating Board
@@ -189,11 +190,11 @@ document.addEventListener('DOMContentLoaded',() =>{
                     let combinedTotal = parseInt(sqs[i][j].innerHTML) + parseInt(sqs[i][j-1].innerHTML)
                     sqs[i][j].innerHTML = combinedTotal
                     sqs[i][j-1].innerHTML = ""
+                    score += combinedTotal
+                    scoreDisplay.innerHTML = score
                 }
             }
         }
-        let score = maxScore()
-        scoreDisplay.innerHTML = (score)
         checkForWin()
     }
 
@@ -210,11 +211,11 @@ document.addEventListener('DOMContentLoaded',() =>{
                     let combinedTotal = parseInt(sqs[i][j].innerHTML) + parseInt(sqs[i][j+1].innerHTML)
                     sqs[i][j].innerHTML = combinedTotal
                     sqs[i][j+1].innerHTML = ""
+                    score += combinedTotal
+                    scoreDisplay.innerHTML = score
                 }
             }
         }
-        let score = maxScore()
-        scoreDisplay.innerHTML = (score)
         checkForWin()
     }
 
@@ -230,11 +231,11 @@ document.addEventListener('DOMContentLoaded',() =>{
                     let combinedTotal = parseInt(sqs[i][j].innerHTML) + parseInt(sqs[i+1][j].innerHTML)
                     sqs[i][j].innerHTML = combinedTotal
                     sqs[i+1][j].innerHTML = ""
+                    score += combinedTotal
+                    scoreDisplay.innerHTML = score
                 }
             }
         }
-        let score = maxScore()
-        scoreDisplay.innerHTML = (score)
         checkForWin()
     }
 
@@ -251,11 +252,11 @@ document.addEventListener('DOMContentLoaded',() =>{
                     let combinedTotal = parseInt(sqs[i][j].innerHTML) + parseInt(sqs[i-1][j].innerHTML)
                     sqs[i][j].innerHTML = combinedTotal
                     sqs[i-1][j].innerHTML = ""
+                    score += combinedTotal
+                    scoreDisplay.innerHTML = score
                 }
             }
         }
-        let score = maxScore()
-        scoreDisplay.innerHTML = (score)
         checkForWin()
     }
 
