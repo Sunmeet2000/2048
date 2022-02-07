@@ -9,7 +9,8 @@ function fun()
 document.addEventListener('DOMContentLoaded',() =>{
     const boardDisplay = document.querySelector('.board')
     const scoreDisplay =  document.getElementById('score')
-    const resultDisplay = document.getElementById('result')
+    const resultDisplay = document.getElementById('resultwin')
+    const result2Display = document.getElementById('resultlose')
 
     let sqs = []
     let arr = [2,4]
@@ -176,7 +177,7 @@ document.addEventListener('DOMContentLoaded',() =>{
     }
 
 
-    //Combining Row After Right Move.
+    //Combining(adding) Row After Right Move.
     function combinerowright()
     {
         for(let i=0;i<4;i++)
@@ -197,7 +198,7 @@ document.addEventListener('DOMContentLoaded',() =>{
     }
 
 
-    //Combining Row After Left Move.
+    //Combining(adding) Row After Left Move.
     function combinerowleft()
     {
         for(let i=0;i<4;i++)
@@ -217,7 +218,7 @@ document.addEventListener('DOMContentLoaded',() =>{
         checkForWin()
     }
 
-    //Combining Column After Up Move.
+    //Combining(adding) Column After Up Move.
     function combineup()
     {
         for(let j=0;j<4;j++)
@@ -238,7 +239,7 @@ document.addEventListener('DOMContentLoaded',() =>{
     }
 
 
-    //Combining Column After Down Move.
+    //Combining(adding) Column After Down Move.
     function combinedown()
     {
         for(let j=0;j<4;j++)
@@ -276,30 +277,31 @@ document.addEventListener('DOMContentLoaded',() =>{
        return(s)
     }
 
-
-    function control(e)
+    /* Function for calling various up,down,left,right move functions after user gives input to 
+       move.*/
+    function control(c)
     {
-        if(e.keyCode === 39)
+        if(c.keyCode === 39)
         {
             keyRight()
         }
-        else if(e.keyCode === 37)
+        else if(c.keyCode === 37)
         {
             keyLeft()
         }
-        else if(e.keyCode === 38)
+        else if(c.keyCode === 38)
         {
             keyUpwards()
         }
-        else if(e.keyCode === 40)
+        else if(c.keyCode === 40)
         {
             keyDownwards()
         }
     }
 
 
-    //Adding EventListner for checking if user has given any input for moving left,right,up,down 
-    // in board or not. 
+    /* Adding EventListner for checking if user has given any input for moving left,right,up,down 
+     in board or not. */
     document.addEventListener('keyup',control)
 
 
@@ -350,7 +352,7 @@ document.addEventListener('DOMContentLoaded',() =>{
         {
             for(let j=0;j<4;j++)
             {
-                if(sqs[i][j].innerHTML == 256)
+                if(sqs[i][j].innerHTML == 16)
                 {
                     resultDisplay.innerHTML = 'You Win!'
                     document.removeEventListener('keyup',control)
@@ -376,7 +378,7 @@ document.addEventListener('DOMContentLoaded',() =>{
         }
         if(zeroes == 0)
         {
-            resultDisplay.innerHTML = 'YouLose!'
+            result2Display.innerHTML = 'You Lose!'
             document.removeEventListener('keyup',control)
         }
     }
