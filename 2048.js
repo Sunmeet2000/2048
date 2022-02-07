@@ -339,7 +339,7 @@ document.addEventListener('DOMContentLoaded',() =>{
         {
             for(let j=0;j<4;j++)
             {
-                if(sqs[i][j].innerHTML == 2048)
+                if(sqs[i][j].innerHTML == 64)
                 {
                     resultDisplay.innerHTML = 'You Win!'
                     document.removeEventListener('keyup',control)
