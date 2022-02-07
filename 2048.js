@@ -125,9 +125,9 @@ function highScore()
                 let filterRow = row.filter(num => num)              //Removing all zero's from row array.
                 let miss = 4 - filterRow.length                    //Finding how many zero's are there in row.
                 let zeros = Array(miss).fill(0)                    //Creating an array with zero's.
-                let newRow = zeros.concat(filterRow)               //Concatinating zero array with elements present in row.
+                let newRow = zeros.concat(filterRow)              //Concatinating zero array with elements present in row.
 
-                sqs[i][0].innerHTML = (newRow[0] == 0) ? "" : (newRow[0])
+                sqs[i][0].innerHTML = (newRow[0] == 0) ? "" : (newRow[0])         //Inserting elements back to row.
                 sqs[i][1].innerHTML = (newRow[1] == 0) ? "" : (newRow[1])
                 sqs[i][2].innerHTML = (newRow[2] == 0) ? "" : (newRow[2])
                 sqs[i][3].innerHTML = (newRow[3] == 0) ? "" : (newRow[3])
@@ -167,19 +167,19 @@ function highScore()
     {
        for(let j=0;j<4;j++)
        {
-            let a = (sqs[0][j].innerHTML == "") ? 0 : (sqs[0][j].innerHTML)
+            let a = (sqs[0][j].innerHTML == "") ? 0 : (sqs[0][j].innerHTML)     //Extracting elements of column.
             let b = (sqs[1][j].innerHTML == "") ? 0 : (sqs[1][j].innerHTML)
             let c = (sqs[2][j].innerHTML == "") ? 0 : (sqs[2][j].innerHTML)
             let d = (sqs[3][j].innerHTML == "") ? 0 : (sqs[3][j].innerHTML)
 
-            let column = [parseInt(a),parseInt(b),parseInt(c),parseInt(d)]
-        
-            let filterColumn = column.filter(num => num)
-            let miss = 4 - filterColumn.length
-            let zeros = Array(miss).fill(0)
-            let newColumn = filterColumn.concat(zeros)
+            let column = [parseInt(a),parseInt(b),parseInt(c),parseInt(d)]     //Converting strings to integer type.
+           
+            let filterColumn = column.filter(num => num)                 //Removing all zero's from column array.
+            let miss = 4 - filterColumn.length                           //Finding how many zero's are there in column.
+            let zeros = Array(miss).fill(0)                              //Creating an array with zero's.
+            let newColumn = filterColumn.concat(zeros)                   //Concatinating zero array with elements present in column.
 
-            sqs[0][j].innerHTML = (newColumn[0] == 0) ? "" : (newColumn[0])
+            sqs[0][j].innerHTML = (newColumn[0] == 0) ? "" : (newColumn[0])      //Inserting elements back to column.
             sqs[1][j].innerHTML = (newColumn[1] == 0) ? "" : (newColumn[1])
             sqs[2][j].innerHTML = (newColumn[2] == 0) ? "" : (newColumn[2])
             sqs[3][j].innerHTML = (newColumn[3] == 0) ? "" : (newColumn[3])    
@@ -223,16 +223,16 @@ function highScore()
             {
                 if(sqs[i][j].innerHTML == sqs[i][j-1].innerHTML && sqs[i][j].innerHTML != "" && sqs[i][j-1].innerHTML != "")
                 {
-                    let combinedTotal = parseInt(sqs[i][j].innerHTML) + parseInt(sqs[i][j-1].innerHTML)
+                    let combinedTotal = parseInt(sqs[i][j].innerHTML) + parseInt(sqs[i][j-1].innerHTML)   //Converting strings to integers and adding them.
                     sqs[i][j].innerHTML = combinedTotal
                     sqs[i][j-1].innerHTML = ""
-                    score += combinedTotal
-                    scoreDisplay.innerHTML = score
-                    highScore()
+                    score += combinedTotal                                               //Adding sum to score.
+                    scoreDisplay.innerHTML = score 
+                    highScore()                                //Calling function highScore() to update high score of user.
                 }
             }
         }
-        checkForWin()
+        checkForWin()           //Calling function checkForWin().
     }
 
 
