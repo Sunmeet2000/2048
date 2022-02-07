@@ -352,7 +352,7 @@ document.addEventListener('DOMContentLoaded',() =>{
         {
             for(let j=0;j<4;j++)
             {
-                if(sqs[i][j].innerHTML == 16)
+                if(sqs[i][j].innerHTML == 2048)
                 {
                     resultDisplay.innerHTML = 'You Win!'
                     document.removeEventListener('keyup',control)
@@ -365,18 +365,18 @@ document.addEventListener('DOMContentLoaded',() =>{
     //Checking if grid is full & user has lost the game.
     function checkForGameOver()
     {
-        let zeroes = 0
+        let z = 0
         for(let i=0;i<4;i++)
         {
             for(let j=0;j<4;j++)
             {
                 if(sqs[i][j].innerHTML == "")
                 {
-                    zeroes++
+                    z++
                 }
             }
         }
-        if(zeroes == 0)
+        if(z == 0)
         {
             result2Display.innerHTML = 'You Lose!'
             document.removeEventListener('keyup',control)
