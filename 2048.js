@@ -106,10 +106,10 @@ document.addEventListener('DOMContentLoaded',() =>{
     {
         for(let i=0;i<4;i++)
         {
-                let a = sqs[i][0].innerHTML
-                let b = sqs[i][1].innerHTML
-                let c = sqs[i][2].innerHTML
-                let d = sqs[i][3].innerHTML
+                let a = (sqs[i][0].innerHTML == "") ? 0 : (sqs[i][0].innerHTML)
+                let b = (sqs[i][1].innerHTML == "") ? 0 : (sqs[i][1].innerHTML)
+                let c = (sqs[i][2].innerHTML == "") ? 0 : (sqs[i][2].innerHTML)
+                let d = (sqs[i][3].innerHTML == "") ? 0 : (sqs[i][3].innerHTML)
 
                 let row = [parseInt(a),parseInt(b),parseInt(c),parseInt(d)]
              
@@ -118,10 +118,10 @@ document.addEventListener('DOMContentLoaded',() =>{
                 let zeros = Array(miss).fill(0)
                 let newRow = filterRow.concat(zeros)
 
-                sqs[i][0].innerHTML = newRow[0]
-                sqs[i][1].innerHTML = newRow[1]
-                sqs[i][2].innerHTML = newRow[2]
-                sqs[i][3].innerHTML = newRow[3]
+                sqs[i][0].innerHTML = (newRow[0] == 0) ? "" : (newRow[0])
+                sqs[i][1].innerHTML = (newRow[1] == 0) ? "" : (newRow[1])
+                sqs[i][2].innerHTML = (newRow[2] == 0) ? "" : (newRow[2])
+                sqs[i][3].innerHTML = (newRow[3] == 0) ? "" : (newRow[3])
         }      
     }
 
@@ -187,7 +187,7 @@ document.addEventListener('DOMContentLoaded',() =>{
                 {
                     let combinedTotal = parseInt(sqs[i][j].innerHTML) + parseInt(sqs[i][j-1].innerHTML)
                     sqs[i][j].innerHTML = combinedTotal
-                    sqs[i][j-1].innerHTML = 0
+                    sqs[i][j-1].innerHTML = ""
                 }
             }
         }
@@ -204,11 +204,11 @@ document.addEventListener('DOMContentLoaded',() =>{
         {
             for(let j=0;j<3;j++)
             {
-                if(sqs[i][j].innerHTML == sqs[i][j+1].innerHTML)
+                if(sqs[i][j].innerHTML == sqs[i][j+1].innerHTML && sqs[i][j].innerHTML != "" && sqs[i][j+1].innerHTML != "")
                 {
                     let combinedTotal = parseInt(sqs[i][j].innerHTML) + parseInt(sqs[i][j+1].innerHTML)
                     sqs[i][j].innerHTML = combinedTotal
-                    sqs[i][j+1].innerHTML = 0
+                    sqs[i][j+1].innerHTML = ""
                 }
             }
         }
