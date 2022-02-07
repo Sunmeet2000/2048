@@ -1,3 +1,11 @@
+//Reloading a new game.
+function fun()
+{
+   location.reload()
+}
+
+
+//Adding event listner.
 document.addEventListener('DOMContentLoaded',() =>{
     const boardDisplay = document.querySelector('.board')
     const scoreDisplay =  document.getElementById('score')
@@ -339,7 +347,7 @@ document.addEventListener('DOMContentLoaded',() =>{
         {
             for(let j=0;j<4;j++)
             {
-                if(sqs[i][j].innerHTML == 64)
+                if(sqs[i][j].innerHTML == 16)
                 {
                     resultDisplay.innerHTML = 'You Win!'
                     document.removeEventListener('keyup',control)
