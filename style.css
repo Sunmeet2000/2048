@@ -31,6 +31,20 @@ body{
     font-weight: bold;
     margin-left: 0px;
 }
+#highscoretitle
+{
+    font-size:40px;
+    color:white;
+    font-weight: bold;
+    float:left;
+}
+#highscore
+{
+    font-size:40px;
+    color:white;
+    font-weight: bold;
+    margin-left: 0px;   
+}
 #resultwin
 {
     font-size:60px;
@@ -45,7 +59,7 @@ body{
 }
 #refresh
 {
-    margin-top:20px;
+    margin-top:10px;
     font-size:20px;
     background-color:blue;
     color:white;
