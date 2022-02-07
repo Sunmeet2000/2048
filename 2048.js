@@ -350,7 +350,7 @@ document.addEventListener('DOMContentLoaded',() =>{
         {
             for(let j=0;j<4;j++)
             {
-                if(sqs[i][j].innerHTML == 128)
+                if(sqs[i][j].innerHTML == 256)
                 {
                     resultDisplay.innerHTML = 'You Win!'
                     document.removeEventListener('keyup',control)
@@ -368,7 +368,7 @@ document.addEventListener('DOMContentLoaded',() =>{
         {
             for(let j=0;j<4;j++)
             {
-                if(sqs[i][j].innerHTML == 0)
+                if(sqs[i][j].innerHTML == "")
                 {
                     zeroes++
                 }
