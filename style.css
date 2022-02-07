@@ -20,40 +20,40 @@ body{
     border-style: double;
 }
 .scoretitle{
-    font-size:40px;
+    font-size:35px;
     color:white;
     font-weight: bold;
     float:left;
 }
 #score{
-    font-size:40px;
+    font-size:35px;
     color:white;
     font-weight: bold;
     margin-left: 0px;
 }
 #highscoretitle
 {
-    font-size:40px;
+    font-size:35px;
     color:white;
     font-weight: bold;
     float:left;
 }
 #highscore
 {
-    font-size:40px;
+    font-size:35px;
     color:white;
     font-weight: bold;
     margin-left: 0px;   
 }
 #resultwin
 {
-    font-size:60px;
+    font-size:50px;
     color:lightgreen;
     font-weight:bold;
 }
 #resultlose
 {
-    font-size:60px;
+    font-size:50px;
     color:red;
     font-weight:bold;
 }
