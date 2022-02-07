@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded',() =>{
             for(let j=0;j<4;j++)
             {
                 sq = document.createElement('div')
-                sq.innerHTML = 0
+                sq.innerHTML = ""
                 boardDisplay.appendChild(sq)
                 sqs[i].push(sq)
             }
@@ -47,7 +47,7 @@ document.addEventListener('DOMContentLoaded',() =>{
         j1 = (num1 % 4)
         i2 = Math.floor(num2 / 4)
         j2 = (num2 % 4)
-        if(num1 != num2 && sqs[i1][j1].innerHTML == 0 && sqs[i2][j2].innerHTML == 0)
+        if(num1 != num2 && sqs[i1][j1].innerHTML == "" && sqs[i2][j2].innerHTML == "")
         {
             sqs[i1][j1].innerHTML = 2
             sqs[i2][j2].innerHTML = 4
@@ -65,7 +65,7 @@ document.addEventListener('DOMContentLoaded',() =>{
         let i,j
         i = Math.floor(num1 / 4)
         j = (num1 % 4)
-        if(sqs[i][j].innerHTML == 0)
+        if(sqs[i][j].innerHTML == "")
         {
             let num2 = Math.floor(Math.random() * 2)
             sqs[i][j].innerHTML = arr[num2]
@@ -81,10 +81,10 @@ document.addEventListener('DOMContentLoaded',() =>{
     {
         for(let i=0;i<4;i++)
         {
-                let a = sqs[i][0].innerHTML
-                let b = sqs[i][1].innerHTML
-                let c = sqs[i][2].innerHTML
-                let d = sqs[i][3].innerHTML
+                let a = (sqs[i][0].innerHTML == "") ? 0 : (sqs[i][0].innerHTML)
+                let b = (sqs[i][1].innerHTML == "") ? 0 : (sqs[i][1].innerHTML)
+                let c = (sqs[i][2].innerHTML == "") ? 0 : (sqs[i][2].innerHTML)
+                let d = (sqs[i][3].innerHTML == "") ? 0 : (sqs[i][3].innerHTML)
 
                 let row = [parseInt(a),parseInt(b),parseInt(c),parseInt(d)]
              
@@ -93,10 +93,10 @@ document.addEventListener('DOMContentLoaded',() =>{
                 let zeros = Array(miss).fill(0)
                 let newRow = zeros.concat(filterRow)
 
-                sqs[i][0].innerHTML = newRow[0]
-                sqs[i][1].innerHTML = newRow[1]
-                sqs[i][2].innerHTML = newRow[2]
-                sqs[i][3].innerHTML = newRow[3]
+                sqs[i][0].innerHTML = (newRow[0] == 0) ? "" : (newRow[0])
+                sqs[i][1].innerHTML = (newRow[1] == 0) ? "" : (newRow[1])
+                sqs[i][2].innerHTML = (newRow[2] == 0) ? "" : (newRow[2])
+                sqs[i][3].innerHTML = (newRow[3] == 0) ? "" : (newRow[3])
         }      
     }
 
@@ -183,7 +183,7 @@ document.addEventListener('DOMContentLoaded',() =>{
         {
             for(let j=3;j>0;j--)
             {
-                if(sqs[i][j].innerHTML == sqs[i][j-1].innerHTML)
+                if(sqs[i][j].innerHTML == sqs[i][j-1].innerHTML && sqs[i][j].innerHTML != "" && sqs[i][j-1].innerHTML != "")
                 {
                     let combinedTotal = parseInt(sqs[i][j].innerHTML) + parseInt(sqs[i][j-1].innerHTML)
                     sqs[i][j].innerHTML = combinedTotal
@@ -267,7 +267,10 @@ document.addEventListener('DOMContentLoaded',() =>{
        {
            for(let j=0;j<4;j++)
            {
-               s = Math.max(s,parseInt(sqs[i][j].innerHTML))
+               if(sqs[i][j].innerHTML != "")
+               {
+                   s = Math.max(s,parseInt(sqs[i][j].innerHTML))
+               }
            }
        }
        return(s)
